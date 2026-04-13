@@ -1,45 +1,99 @@
-# Miscellaneous
-*.class
-*.log
-*.pyc
-*.swp
-.DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
+# ===========================
+# Flutter
+# ===========================
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+flutter_*.png
+*.g.dart
+*.freezed.dart
+pubspec.lock
 
-# IntelliJ related
+# ===========================
+# Android
+# ===========================
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/key.properties
+**/*.keystore
+**/*.jks
+*.apk
+*.aab
+.gradle/
+local.properties
+*.iml
+
+# ===========================
+# Firebase
+# ===========================
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
+**/google-services.json
+**/GoogleService-Info.plist
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+database-debug.log
+functions/node_modules/
+functions/.env
+functions/.env.local
+
+# ===========================
+# macOS
+# ===========================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+**/.DS_Store
+
+# ===========================
+# Environment & Secrets
+# ===========================
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.p8
+secrets/
+config/secrets.dart
+
+# ===========================
+# Android Studio / IntelliJ
+# ===========================
+.idea/
+.run/
 *.iml
 *.ipr
 *.iws
-.idea/
+*.xml
+!.idea/modules.xml
+!.idea/runConfigurations/
+captures/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
-/coverage/
-
-# Symbolication related
-app.*.symbols
-
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# ===========================
+# Misc
+# ===========================
+*.log
+coverage/
+*.lcov
+doc/api/
