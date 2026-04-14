@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'firebase_options.dart';
 import 'services/fcm_service.dart';
 
@@ -27,18 +28,27 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   final FCMService _fcmService = FCMService();
   static const String _imagePath = 'assets/images/bell.png';
   String _statusText = 'Waiting for a cloud message';
   String _bodyText = '';
   String _fcmToken = 'Fetching token...';
   Map<String, dynamic> _dataPayload = {};
+  bool _showAnimation = false;
+  late AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
+    _animationController = AnimationController(vsync: this);
     _initFCM();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   Future<void> _initFCM() async {
@@ -56,6 +66,11 @@ class _HomePageState extends State<HomePage> {
         _statusText = message.notification?.title ?? 'Payload received';
         _bodyText = message.notification?.body ?? '';
         _dataPayload = message.data;
+        _showAnimation = true;
+      });
+      // Play animation then hide it when done
+      _animationController.forward(from: 0).whenComplete(() {
+        setState(() => _showAnimation = false);
       });
     });
 
@@ -74,6 +89,19 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
+            // Lottie animation — plays once on message arrival
+            if (_showAnimation)
+              Center(
+                child: Lottie.asset(
+                  'assets/animations/notification.json',
+                  controller: _animationController,
+                  height: 50,
+                  onLoaded: (composition) {
+                    _animationController.duration = composition.duration;
+                  },
+                ),
+              ),
 
             // Phase 5: status text from notification title
             Text(_statusText, style: Theme.of(context).textTheme.headlineSmall),
