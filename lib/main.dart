@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
   final FCMService _fcmService = FCMService();
   String _statusText = 'Waiting for a cloud message';
   String _fcmToken = 'Fetching token...';
-  // String _imagePath = 'assets/images/default.png';
+  static const String _imagePath = 'assets/images/bell.png';
 
   @override
   void initState() {
